@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
@@ -40,11 +39,12 @@ public class User {
 	@Column(nullable=false, length=50)
 	private String email; //myEMail, my_email
 	
-	@ColumnDefault("'user'") //안쪽에 작은따움표
+	
 	//DB는 RoleType이라는 것이 없다.
 	//@Enumerated(EnumType.STRING)
 	//private RoleType role; //Enum을 쓰는게 좋다. // ADMIN, USER
-          private String role;
+	@Enumerated(EnumType.STRING)
+	private RoleType role; 
 	
 	//내가 직접 시간을 넣으려면 Timestamp.valueOf(LocalDateTime.now())
 	@CreationTimestamp //시간이 자동 입력
